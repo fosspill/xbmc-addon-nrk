@@ -25,7 +25,7 @@ from io import BytesIO
 def get_subtitles(video_id):
     vtt_sub_url = "https://undertekst.nrk.no/prod/%s/%s/%s/TTV/%s.vtt" % (video_id[0:6], video_id[6:8], video_id, video_id)
     ttml_sub_url = "https://undertekst.nrk.no/prod/%s/%s/%s/TMP/%s.ttml" % (video_id[0:6], video_id[6:8], video_id, video_id)
-    html = requests.get(vtt_sub_url).text
+    html = requests.get(ttml_sub_url).text
     if not html:
         return None
 
