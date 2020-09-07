@@ -23,14 +23,15 @@ from io import BytesIO
 
 
 def get_subtitles(video_id):
-    html = requests.get("http://v8.psapi.nrk.no/programs/%s/subtitles/tt" % video_id).text
+    sub_url = "https://undertekst.nrk.no/prod/%s/%s/%s/TTV/%s.vtt" % video_id[0:6], video_id[6:8], video_id, video_id
+    html = requests.get(sub_url).text
     if not html:
         return None
 
     content = _ttml_to_srt(html)
     filename = os.path.join(xbmc.translatePath("special://temp"), 'nor.srt')
     with open(filename, 'w') as f:
-        f.write(content)
+        f.write(html)
     return filename
 
 
