@@ -27,7 +27,6 @@ def get_subtitles(video_id):
     media_element_url = "http://psapi-granitt-prod-we.cloudapp.net/mediaelement/%s" % (video_id)
     media_element_json = requests.get(media_element_url)
     ttml_sub_url = media_element_json.json()["subtitlesUrlPath"]
-    print ttml_sub_url
     html = requests.get(ttml_sub_url).text
     if not html:
         return None
